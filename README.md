@@ -13,6 +13,17 @@
 *   **PipeWire** — звук
 *   **Fastfetch** — информация о системе
 
+## 📸 Скриншоты
+
+### Рабочий стол
+![Рабочий стол](screenshots/desktop.png)
+
+### Терминал с Cava
+![Терминал](screenshots/terminal.png)
+
+### Мониторинг системы (btop)
+![btop](screenshots/btop.png)
+
 ## Установка
 
 ```bash
