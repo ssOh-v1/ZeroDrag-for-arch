@@ -1,0 +1,27 @@
+# ZeroDrag-for-arch
+
+Минималистичное окружение на базе Hyprland для Arch Linux, оптимизированное для игр.
+
+## Компоненты
+
+*   **Hyprland** — оконный менеджер
+*   **Waybar** — панель
+*   **Rofi** — лаунчер
+*   **Kitty** — терминал
+*   **SwayNC** — уведомления
+*   **SDDM** — экран входа (тема ii-sddm-theme)
+*   **PipeWire** — звук
+*   **Fastfetch** — информация о системе
+
+## Установка
+
+```bash
+git clone https://github.com/ТВОЙ_НИК/ZeroDrag-for-arch.git
+cd ZeroDrag-for-arch
+./install.sh
+
+---
+
+## ⌨️ Бинды
+
+Полный список биндов смотри в [docs/KEYBINDS.md](docs/KEYBINDS.md).
