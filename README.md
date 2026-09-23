@@ -27,7 +27,7 @@
 ## Установка
 
 ```bash
-git clone https://github.com/ТВОЙ_НИК/ZeroDrag-for-arch.git
+git clone https://github.com/ssOh-v1/ZeroDrag-for-arch.git
 cd ZeroDrag-for-arch
 ./install.sh
 
