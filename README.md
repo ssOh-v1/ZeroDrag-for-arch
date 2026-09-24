@@ -1,4 +1,4 @@
-# ZeroDrag-for-arch
+# ZeroDrag by Ka1
 
 Минималистичное окружение на базе Hyprland для Arch Linux, оптимизированное для игр.
 
