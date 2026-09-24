@@ -5,7 +5,6 @@
 
 set -e
 
-# Цвета для вывода
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -30,6 +29,7 @@ sudo pacman -S --needed --noconfirm \
     pavucontrol network-manager-applet blueman bluez bluez-utils \
     ttf-fredoka noto-fonts noto-fonts-emoji \
     fuzzel wl-clipboard grim slurp \
+    weston \
     base-devel git wget curl
 
 # 3. Установка yay (AUR helper)
@@ -58,27 +58,35 @@ cp -r configs/kitty ~/.config/
 cp -r configs/swaync ~/.config/
 cp -r configs/fastfetch ~/.config/
 
-# 6. Копирование скриптов
+# 6. Копирование конфигов SDDM
+echo -e "${YELLOW}=== Настройка SDDM ===${NC}"
+sudo mkdir -p /etc/sddm.conf.d
+sudo cp configs/sddm/sddm.conf /etc/sddm.conf
+sudo cp configs/sddm/10-wayland.conf /etc/sddm.conf.d/
+sudo cp configs/sddm/ii-sddm.conf /etc/sddm.conf.d/ 2>/dev/null || true
+sudo cp configs/sddm/ii-sddm-theme.conf /etc/sddm.conf.d/ 2>/dev/null || true
+
+# 7. Копирование скриптов
 echo -e "${YELLOW}=== Копирование скриптов ===${NC}"
 mkdir -p ~/.local/bin
 cp scripts/* ~/.local/bin/ 2>/dev/null || true
 chmod +x ~/.local/bin/* 2>/dev/null || true
 
-# 7. Установка обоев
+# 8. Установка обоев
 echo -e "${YELLOW}=== Установка обоев ===${NC}"
 sudo mkdir -p /usr/share/sddm/themes/ii-sddm-theme/Backgrounds
 sudo cp -n wallpapers/* /usr/share/sddm/themes/ii-sddm-theme/Backgrounds/ 2>/dev/null || true
 
-# 8. Настройка sudoers для смены обоев без пароля
+# 9. Настройка sudoers для смены обоев без пароля
 echo -e "${YELLOW}=== Настройка sudoers ===${NC}"
 echo "$USER ALL=(ALL) NOPASSWD: /usr/bin/cp" | sudo tee /etc/sudoers.d/wallpaper-change > /dev/null
 sudo chmod 440 /etc/sudoers.d/wallpaper-change
 
-# 9. Автозапуск PipeWire
+# 10. Автозапуск PipeWire
 echo -e "${YELLOW}=== Включение PipeWire ===${NC}"
 systemctl --user enable --now pipewire pipewire-pulse wireplumber 2>/dev/null || true
 
-# 10. Бэкап старых конфигов
+# 11. Бэкап старых конфигов
 echo -e "${YELLOW}=== Резервное копирование старых конфигов ===${NC}"
 if [ -d ~/.config ]; then
     BACKUP_DIR="$HOME/.config_backup_$(date +%Y%m%d-%H%M%S)"
@@ -87,7 +95,7 @@ if [ -d ~/.config ]; then
     echo -e "${GREEN}Старые конфиги сохранены в $BACKUP_DIR${NC}"
 fi
 
-# 11. Включение SDDM
+# 12. Включение SDDM
 echo -e "${YELLOW}=== Включение SDDM ===${NC}"
 sudo systemctl enable sddm
 
